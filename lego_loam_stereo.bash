@@ -35,5 +35,5 @@ roslaunch lego_loam_bor run_custom.launch \
 	bagfile_id:=$SESSION  \
 	rosbag:=$BASE_DIR/"BAGS"/$(basename $ROSBAG) \
 	output_base_path:=$TARGET_DATASET_BASE_DIR \
-	lidar_topic:=$LIDAR_TOPIC 
+	lidar_topic:=$LIDAR_TOPIC
 	

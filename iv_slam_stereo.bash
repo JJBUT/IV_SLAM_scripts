@@ -38,8 +38,8 @@ if [ $MODE = "1" ]; then
 	ENABLE_VIEWER="false"	
 	USE_GPU="false"
 	CONFIG_FILE_NAME=$orb_iv_camera_params_generation_CONFIG_FILE_NAME
-	TARGET_RESULT_BASE_DIR=$BASE_DIR/"TRAINING_DATA"/$SESSION/"diagnostics_TEST"
-	TARGET_DATASET_BASE_DIR=$BASE_DIR/"TRAINING_DATA"/$SESSION/"generated_training_data_TEST"
+	TARGET_RESULT_BASE_DIR=$BASE_DIR/"TRAINING_DATA"/$SESSION/"diagnostics"
+	TARGET_DATASET_BASE_DIR=$BASE_DIR/"TRAINING_DATA"/$SESSION/"generated_training_data"
 elif [ $MODE = "2" ]; then
 	echo ""
 	echo ${txtred}"**************************** Inference ****************************"${txtrst}
