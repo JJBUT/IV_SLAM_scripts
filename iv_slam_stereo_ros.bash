@@ -10,7 +10,7 @@ BASE_DIR=\
 $IV_SLAM_DATA_DIR
 
 CONFIG_FILE_PATH=\
-$BASE_DIR/"CONFIG"/$SESSION
+$BASE_DIR/"CONFIG"/"2021_jan"
 
 SOURCE_DATASET_BASE_DIR=""
 
@@ -35,9 +35,7 @@ TARGET_DATASET_BASE_DIR=""
 
 echo ""
 echo "**************************** iv_slam_stereo Script Parameters ****************************"
-echo ${txtgrn}"SESSION: " $SESSION
 echo "CONFIG_FILE_NAME: " $CONFIG_FILE_NAME
-echo "MODE: " $MODE
 echo "BASE_DIR: " $BASE_DIR
 echo "CONFIG_FILE_PATH: " $CONFIG_FILE_PATH
 echo "SOURCE_DATASET_BASE_DIR: " $SOURCE_DATASET_BASE_DIR
@@ -77,17 +75,17 @@ TRACKING_BA_RATE="1" # def: 1
 
 
 
-$IV_SLAM_DIR/introspective_ORB_SLAM/ROS/ORB_SLAM2/Stereo \
+$IV_SLAM_DIR/introspective_ORB_SLAM/Examples/ROS/ORB_SLAM2/Stereo \
   --vocab_path=$IV_SLAM_DIR/"introspective_ORB_SLAM/Vocabulary/ORBvoc.txt" \
   --settings_path=$CONFIG_FILE_PATH/$CONFIG_FILE_NAME \
   --data_path=$SEQUENCE_PATH \
-  --minloglevel="1" \
+  --minloglevel="0" \
   --ground_truth_path=$GROUND_TRUTH_PATH/"poses.txt" \
   --img_qual_path=$PREDICTED_IMAGE_QUAL_BASE_DIR \
   --introspection_model_path=$INTROSPECTION_MODEL_PATH \
   --out_visualization_path=$TARGET_RESULT_BASE_DIR \
   --out_dataset_path=$TARGET_DATASET_BASE_DIR \
-  --rel_pose_uncertainty_path=$LIDAR_POSE_UNC_PATH/$SESSION"_pred_unc.txt" \
+  --rel_pose_uncertainty_path=$LIDAR_POSE_UNC_PATH/"pred_unc.txt" \
   --start_frame=$START_FRAME \
   --introspection_func_enabled=$INTROSPECTION_FUNCTION_ENABLED \
   --load_img_qual_heatmaps=$LOAD_IMG_QUAL_HEATMAPS_FROM_FILE \
