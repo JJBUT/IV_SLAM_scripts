@@ -3,7 +3,7 @@
 echo -n "Please enter the description (hint: "ahg_husky"): "
 read DESCRIPTION
 
-source ../CONFIG/setup.bash
+source setup.bash
 
 CONFIG_FILE_NAME=$ml_model_params_stereo_CONFIG_FILE_NAME
 
@@ -12,8 +12,6 @@ $IV_SLAM_DATA_DIR/
 
 CONFIG_FILE_PATH=\
 $BASE_DIR/"MODEL"/$DESCRIPTION
-
-mkdir -p $IV_SLAM_DATA_DIR/"MODEL"/$DESCRIPTION
 
 eval "$(conda shell.bash hook)"
 conda activate ivslam-env

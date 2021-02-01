@@ -9,7 +9,7 @@ read SESSION
 echo -n "Generation/infererence/inference with introspection? (hint: 1/2/3): "
 read MODE
 
-source ../CONFIG/setup.bash
+source setup.bash
 
 
 BASE_DIR=\
