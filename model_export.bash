@@ -3,7 +3,7 @@
 echo -n "Please enter the description (hint: "ahg_husky"): "
 read DESCRIPTION
 
-source ../CONFIG/setup.bash
+source setup.bash
 
 CONFIG_FILE_NAME=$ml_model_params_stereo_CONFIG_FILE_NAME
 
@@ -26,4 +26,4 @@ cd $BASE_DIR/"MODEL"/$DESCRIPTION/"exported_model"
 python \
 $IV_SLAM_DIR/introspection_function/training/export_model_light.py \
  --cfg $CONFIG_FILE_PATH/$ml_model_params_stereo_CONFIG_FILE_NAME \
- --output_model "iv_ahg_husky_mobilenet_c1deepsup_light.pt"
+ --output_model "iv_"$DESCRIPTION"_mobilenet_c1deepsup_light.pt"
