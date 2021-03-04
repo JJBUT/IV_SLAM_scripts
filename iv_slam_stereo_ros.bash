@@ -23,11 +23,11 @@ echo "ORBextractor.enableIntrospection: 1"
 echo ${txtred}"**************************** Inference with Introspection for ROS ****************************"${txtrst}
 	
 
-IVSLAM_ENABLED="true"
+IVSLAM_ENABLED="false"
 CREATE_IVSLAM_DATASET="false"
 INFERENCE_MODE="true"
 INTROSPECTION_FUNCTION_ENABLED="true"
-ENABLE_VIEWER="true"
+ENABLE_VIEWER="false"
 USE_GPU="true"
 CONFIG_FILE_NAME=$orb_iv_camera_params_inference_w_introspection_CONFIG_FILE_NAME
 TARGET_RESULT_BASE_DIR=$BASE_DIR/"ROS"
@@ -50,10 +50,8 @@ LIDAR_POSE_UNC_PATH=""
 
 
 INTROSPECTION_MODEL_PATH=\
-"/home/administrator/DATA/MODEL/ahg_husky/exported_model/iv_ahg_husky_mobilenet_c1deepsup_light.pt"
+"/home/administrator/DATA/MODEL/speedway_husky/exported_model/iv_speedway_husky_mobilenet_c1deepsup_light.pt"
 PREDICTED_IMAGE_QUAL_BASE_DIR=""
-
-
 
 mkdir -p $TARGET_RESULT_BASE_DIR
 
@@ -66,7 +64,7 @@ LOAD_IMG_QUAL_HEATMAPS_FROM_FILE="false"
 LOAD_REL_POSE_UNCERTAINTY="false"
 IVSLAM_PROPAGATE_KEYPT_QUAL="false"
 
-MAP_DRAWER_VISUALIZE_GT_POSE="true"
+MAP_DRAWER_VISUALIZE_GT_POSE="false"
 
 OPTIMIZER_RUN_EXTRA_ITERATIONS="true"
 OPTIMIZER_POSE_OPT_ITER_COUNT="4" # def: 4
@@ -75,7 +73,7 @@ TRACKING_BA_RATE="1" # def: 1
 
 
 
-$IV_SLAM_DIR/introspective_ORB_SLAM/Examples/ROS/ORB_SLAM2/Stereo \
+$IV_SLAM_DIR/introspective_ORB_SLAM/Examples/ROS/ORB_SLAM2/build/Stereo \
   --vocab_path=$IV_SLAM_DIR/"introspective_ORB_SLAM/Vocabulary/ORBvoc.txt" \
   --settings_path=$CONFIG_FILE_PATH/$CONFIG_FILE_NAME \
   --data_path=$SEQUENCE_PATH \
