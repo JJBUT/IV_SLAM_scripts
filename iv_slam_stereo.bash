@@ -8,6 +8,8 @@ echo -n "Please enter session ID (hint: five digits): "
 read SESSION
 echo -n "Generation/infererence/inference with introspection? (hint: 1/2/3): "
 read MODE
+echo -n "Config setup? (hint: 2021_jan): "
+read CONFIG_MONTH
 
 source ../CONFIG/setup.bash
 
@@ -16,7 +18,7 @@ BASE_DIR=\
 $IV_SLAM_DATA_DIR
 
 CONFIG_FILE_PATH=\
-$BASE_DIR/"CONFIG"/$SESSION
+$BASE_DIR/"CONFIG"/$CONFIG_MONTH
 
 SOURCE_DATASET_BASE_DIR=\
 $BASE_DIR/"KITTI_FORMAT"/$SESSION
@@ -35,7 +37,6 @@ if [ $MODE = "1" ]; then
 	CREATE_IVSLAM_DATASET="true"
 	INFERENCE_MODE="false"
 	INTROSPECTION_FUNCTION_ENABLED="false"
-	ENABLE_VIEWER="false"	
 	USE_GPU="false"
 	CONFIG_FILE_NAME=$orb_iv_camera_params_generation_CONFIG_FILE_NAME
 	TARGET_RESULT_BASE_DIR=$BASE_DIR/"TRAINING_DATA"/$SESSION/"diagnostics_TEST"
@@ -50,16 +51,15 @@ elif [ $MODE = "2" ]; then
 	echo ${txtred}"**************************** Inference ****************************"${txtrst}
 	echo ""
 	
-	echo -n "Please enter the description (hint: "ahg_husky"): "
+	echo -n "Please enter the description (hint: ahg_husky): "
 	read DESCRIPTION
 	IVSLAM_ENABLED="true"
 	CREATE_IVSLAM_DATASET="false"
 	INFERENCE_MODE="true"
 	INTROSPECTION_FUNCTION_ENABLED="false"
-	ENABLE_VIEWER="true"
 	USE_GPU="false"
 	CONFIG_FILE_NAME=$orb_iv_camera_params_inference_CONFIG_FILE_NAME
-	TARGET_RESULT_BASE_DIR=$BASE_DIR/"MODEL/ahg_husky/evaluate_model"/$SESSION/"ORB_SLAM"
+	TARGET_RESULT_BASE_DIR=$BASE_DIR/"MODEL"/$DESCRIPTION/"evaluate_model"/$SESSION/"ORB_SLAM"
 	TARGET_DATASET_BASE_DIR=""
 elif [ $MODE = "3" ]; then
 	echo ""
@@ -70,14 +70,13 @@ elif [ $MODE = "3" ]; then
 	echo "ORBextractor.enableIntrospection: 1"
 	echo ${txtred}"**************************** Inference with Introspection ****************************"${txtrst}
 	
-	echo -n "Please enter the description (hint: "ahg_husky"): "
+	echo -n "Please enter the description (hint: ahg_husky): "
 	read DESCRIPTION
 
 	IVSLAM_ENABLED="true"
 	CREATE_IVSLAM_DATASET="false"
 	INFERENCE_MODE="true"
 	INTROSPECTION_FUNCTION_ENABLED="true"
-	ENABLE_VIEWER="true"
 	USE_GPU="true"
 	CONFIG_FILE_NAME=$orb_iv_camera_params_inference_w_introspection_CONFIG_FILE_NAME
 	TARGET_RESULT_BASE_DIR=$BASE_DIR/"MODEL"/$DESCRIPTION/"evaluate_model"/$SESSION/"IV_SLAM"
@@ -109,7 +108,7 @@ $SOURCE_DATASET_BASE_DIR/"lidar_poses"
 
 
 INTROSPECTION_MODEL_PATH=\
-"/home/administrator/DATA/MODEL/ahg_husky/exported_model/iv_ahg_husky_mobilenet_c1deepsup_light.pt"
+"/home/administrator/DATA/MODEL/speedway_24th_cross/exported_model/iv_speedway_24th_cross_mobilenet_c1deepsup_light.pt"
 PREDICTED_IMAGE_QUAL_BASE_DIR=""
 
 
@@ -121,6 +120,7 @@ mkdir -p $TARGET_DATASET_BASE_DIR
 START_FRAME="0" 
 RECTIFY_IMGS="true"
 UNDISTORT_IMGS="true"
+ENABLE_VIEWER="false"
 
 RUN_SINGLE_THREADED="false"
 LOAD_IMG_QUAL_HEATMAPS_FROM_FILE="false"
